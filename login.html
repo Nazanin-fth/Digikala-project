@@ -46,18 +46,18 @@
     <script>
         const loginInputField = document.getElementById("login-input-field");
         const emptyError = document.getElementById("empty-error");
-        const invalidError = document.getElementById("invalid-error");
+        const invalidError = document.getElementById("login-error-text"); // اصلاح شد
         const loginSubmitBtn = document.getElementById("login-submit-btn");
 
         function validateInput(value) {
-            const phonePattern = /^09[0-9]{9}$/;
+            const phonePattern = /^09\d{9}$/; 
             const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             return phonePattern.test(value) || emailPattern.test(value);
         }
 
         loginInputField.addEventListener("input", function() {
             const value = loginInputField.value.trim();
-            
+
             if (value === "") {
                 emptyError.style.display = "block";
                 invalidError.style.display = "none";
