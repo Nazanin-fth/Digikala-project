@@ -2517,21 +2517,30 @@
         },
     });
     const emailInput = document.getElementById('emailInput');
-        const subscribeButton = document.getElementById('subscribeButton');
-        const errorMsg = document.getElementById('errorMsg');
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const subscribeButton = document.getElementById('subscribeButton');
+    const errorMsg = document.getElementById('errorMsg');
 
-        emailInput.addEventListener('input', function() {
-            if (emailInput.value.trim() !== '') {
-                subscribeButton.classList.add('active');
-                subscribeButton.disabled = false;
-                errorMsg.style.display = 'none';
-            } else {
-                subscribeButton.classList.remove('active');
-                subscribeButton.disabled = true;
-                errorMsg.style.display = 'block';
-            }
-        });
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    emailInput.addEventListener('input', function() {
+        const value = emailInput.value.trim();
+
+        if (value === "") {
+            errorMsg.textContent = "لطفا این قسمت را خالی نگذارید"; 
+            errorMsg.style.display = "block";
+            subscribeButton.classList.remove('active');
+            subscribeButton.disabled = true;
+        } else if (!emailPattern.test(value)) {
+            errorMsg.textContent = "لطفا یک ایمیل معتبر وارد کنید"; 
+            errorMsg.style.display = "block";
+            subscribeButton.classList.remove('active');
+            subscribeButton.disabled = true;
+        } else {
+            errorMsg.style.display = "none"; 
+            subscribeButton.classList.add('active');
+            subscribeButton.disabled = false;
+        }
+});
   </script>
   </body>
 </html>
