@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>فروشگاه اینترنتی دیجی‌کالا</title>
-    <link rel="stylesheet" href="node_modules/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.css">
     <link rel="stylesheet" href="./css/main.css"/>
     <link rel="icon" href="./images/favicon.png" type="image/x-icon"/>
     <style>
@@ -32,6 +32,7 @@
             
 
             <input type="text" id="login-input-field" class="login-input" placeholder="شماره موبایل یا ایمیل">
+            <div class="error-message" id="empty-error">لطفا این قسمت را خالی نگذارید</div>
             <div class="login-error" id="login-error-text">لطفا شماره موبایل یا ایمیل معتبر وارد کنید</div>
             <button class="login-btn" id="login-submit-btn" disabled>ورود</button>
 
@@ -45,23 +46,34 @@
 
     <script>
         const loginInputField = document.getElementById("login-input-field");
-        const loginErrorText = document.getElementById("login-error-text");
+        const emptyError = document.getElementById("empty-error");
+        const invalidError = document.getElementById("invalid-error");
         const loginSubmitBtn = document.getElementById("login-submit-btn");
 
         function validateInput(value) {
             const phonePattern = /^09[0-9]{9}$/;
-            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             return phonePattern.test(value) || emailPattern.test(value);
         }
 
         loginInputField.addEventListener("input", function() {
             const value = loginInputField.value.trim();
-            if (validateInput(value)) {
-                loginErrorText.style.display = "none";
-                loginSubmitBtn.disabled = false;
-            } else {
-                loginErrorText.style.display = "block";
+            
+            if (value === "") {
+                emptyError.style.display = "block";
+                invalidError.style.display = "none";
+                loginInputField.classList.add("input-error");
                 loginSubmitBtn.disabled = true;
+            } else if (!validateInput(value)) {
+                emptyError.style.display = "none";
+                invalidError.style.display = "block";
+                loginInputField.classList.add("input-error");
+                loginSubmitBtn.disabled = true;
+            } else {
+                emptyError.style.display = "none";
+                invalidError.style.display = "none";
+                loginInputField.classList.remove("input-error");
+                loginSubmitBtn.disabled = false;
             }
         });
     </script>
