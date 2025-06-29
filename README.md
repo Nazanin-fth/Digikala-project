@@ -3,4 +3,5 @@
 ممکنه لود شدن فونت و تصاویر در صفحه اول چند ثانیه طول بکشه چون از منابع خارجی (CDNها) استفاده شده و تصاویر بهینه‌سازی نشده‌اند. این پروژه با هدف یادگیری ساخته شده و شامل بهینه‌سازی‌های عملکردی مثل فشرده‌سازی عکس یا lazy loading نیست.
 
 I'd really appreciate any feedback — always happy to learn and improve!
+
 Thanks for stopping by :)
